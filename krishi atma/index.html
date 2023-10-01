@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi Atma</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo-color.png" alt="Logo" id="logo">
+        </div>
+        <h1>Krishi Atma</h1>
+        <div class="header-tabs">
+            <a href="faq.html" class="tab">FAQ</a>
+            <a href="about.html" class="tab">About Us</a>
+        </div>
+    </header>
+    <main>
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <!-- <h1>Agriculture Data</h1> -->
+            <ul id="data-list"></ul>
+
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            <div class="user-input">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button id="mic-button" onclick="startListening()">&#127908;</button>
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
