@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('WhatsApp\ Image\ 2023-10-02\ at\ 12.03.53\ AM.png');
+    /* Update the image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    color: white;
+    /* Set text color to white for better readability on the background image */
+}
+
+header {
+    background-color: rgba(76, 175, 80, 0.8);
+    /* Semi-transparent green background for header */
+    text-align: left;
+    /* Align header text to the left */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* Align header content to the right */
+    align-items: center;
+}
+
+.logo-container {
+    width: 100px;
+    /* Double the size of the logo */
+    height: 100px;
+    /* Double the size of the logo */
+    overflow: hidden;
+    border-radius: 50%;
+    /* Makes the container circular */
+    margin-right: 10px;
+}
+
+#logo {
+    width: 100%;
+    /* Adjust the logo size to fit the container */
+    height: 100%;
+    /* Adjust the logo size to fit the container */
+    object-fit: cover;
+    /* Ensures the logo fits within the circular container */
+}
+
+h1 {
+    margin: 0;
+    /* Remove margin */
+    font-size: 54px;
+    /* Increase the font size to 36px */
+}
+
+.header-tabs {
+    display: flex;
+    gap: 20px;
+    /* Adjust the space between tabs */
+}
+
+.tab {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    /* Green background color for tabs */
+    transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #388E3C;
+    /* Darker green color on hover */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.chat-container {
+    width: 100%;
+    /* Set the width to 100% */
+    max-width: 720px;
+    /* Update the max-width */
+    background-color: rgba(7, 0, 0, 0.8);
+    /* Updated background color to rgba(7, 0, 0, 0.8) */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px;
+    /* Add margin for spacing */
+}
+
+.chat-messages {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Style for user messages (sent messages) */
+.user-message {
+    background-color: #007acc;
+    /* Blue background for user messages */
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: auto;
+    /* Push user messages to the right */
+    margin-right: 0;
+    max-width: 70%;
+    /* Limit the maximum width of user messages */
+    word-wrap: break-word;
+    /* Wrap long words to the next line */
+}
+
+/* Style for bot messages (received messages) */
+.bot-message {
+    background-color: #4CAF50;
+    /* Green background for bot messages */
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: auto;
+    /* Push bot messages to the right */
+    margin-left: 0;
+    max-width: 70%;
+    /* Limit the maximum width of bot messages */
+    word-wrap: break-word;
+    /* Wrap long words to the next line */
+}
+
+.user-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#mic-button {
+    background-color: #007acc;
+    margin-inline: 10px;
+    /* Create space between mic button and send button */
+}
+
+#send-button {
+    margin-left: 5px;
+    /* Create space between mic button and send button */
+}
