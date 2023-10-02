@@ -4,6 +4,7 @@ import sys
 import os
 import speech_recognition as sr
 import time
+import openai  # Add this line
 
 os.environ["OPENAI_API_KEY"] = "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"
 
@@ -24,12 +25,12 @@ def createVectorIndex(path):
 
 vectorIndex = createVectorIndex('knowledge')
 
-def get_response(prompt):
+def get_response(prompt, vIndex):  # Add vIndex as an argument
     while True:
         try:
             response = vIndex.query(prompt, response_mode="compact")
             return response
-        except openai.error.RateLimitError:
+        except openai.error.RateLimitError:  # Now openai is recognized
             print("Rate limit exceeded, waiting for 60 seconds before retrying.")
             time.sleep(60)
 
@@ -59,7 +60,7 @@ def answerMe(vectorIndex):
             print("Invalid option. Please enter 'v' for voice input or 't' for text input.")
             continue
 
-        response = get_response(prompt)
+        response = get_response(prompt, vIndex)  # Pass vIndex to get_response
         print(f"Response: {response}\n")
 
 answerMe('vectorIndex.json')
