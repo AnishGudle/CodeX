@@ -3,8 +3,9 @@ from langchain import OpenAI
 import sys
 import os
 import speech_recognition as sr
+import time
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 def createVectorIndex(path):
     max_input = 4096
@@ -23,23 +24,42 @@ def createVectorIndex(path):
 
 vectorIndex = createVectorIndex('knowledge')
 
+def get_response(prompt):
+    while True:
+        try:
+            response = vIndex.query(prompt, response_mode="compact")
+            return response
+        except openai.error.RateLimitError:
+            print("Rate limit exceeded, waiting for 60 seconds before retrying.")
+            time.sleep(60)
+
 def answerMe(vectorIndex):
     vIndex = GPTSimpleVectorIndex.load_from_disk(vectorIndex)
     recognizer = sr.Recognizer()
 
     while True:
-        print("Please ask your question:")
-        with sr.Microphone() as source:
-            audio = recognizer.listen(source)
+        input_type = input("Do you want to provide voice input or text input? (v/t): ").lower()
+        if input_type == 'v':
+            print("Please ask your question:")
+            with sr.Microphone() as source:
+                audio = recognizer.listen(source)
 
-        try:
-            prompt = recognizer.recognize_google(audio)
-            print(f"You asked: {prompt}")
-            response = vIndex.query(prompt, response_mode="compact")
-            print(f"Response: {response}\n")
-        except sr.UnknownValueError:
-            print("Sorry, I could not understand your audio.")
-        except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service; {e}")
+            try:
+                prompt = recognizer.recognize_google(audio)
+                print(f"You asked: {prompt}")
+            except sr.UnknownValueError:
+                print("Sorry, I could not understand your audio.")
+                continue
+            except sr.RequestError as e:
+                print(f"Could not request results from Google Speech Recognition service; {e}")
+                continue
+        elif input_type == 't':
+            prompt = input("Please ask your question: ")
+        else:
+            print("Invalid option. Please enter 'v' for voice input or 't' for text input.")
+            continue
+
+        response = get_response(prompt)
+        print(f"Response: {response}\n")
 
 answerMe('vectorIndex.json')
